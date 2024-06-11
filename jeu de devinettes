@@ -1,0 +1,36 @@
+#jeu de devinette
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int randomNumber = random.nextInt(100) + 1; 
+        Scanner scanner = new Scanner(System.in);
+        int attempts = 0;
+
+        System.out.println("Devinez le nombre entre 1 et 100:");
+
+        while (attempts < 10) {
+            System.out.print("Essai #" + (attempts + 1) + ": ");
+            int guess = scanner.nextInt();
+            attempts++;
+
+            if (guess == randomNumber) {
+                System.out.println("Félicitations! Vous avez deviné le bon nombre (" + randomNumber + ") en " + attempts + " essais.");
+                break;
+            } else if (guess < randomNumber) {
+                System.out.println("Le nombre deviné est trop bas.");
+            } else {
+                System.out.println("Le nombre deviné est trop haut.");
+            }
+        }
+
+        if (attempts == 10) {
+            System.out.println("Désolé, vous avez utilisé vos 10 essais. Le nombre correct était : " + randomNumber);
+        }
+        
+        scanner.close();
+    }
+}
